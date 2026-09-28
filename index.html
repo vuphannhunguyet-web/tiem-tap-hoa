@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tiệm Tạp Hóa Nhỏ</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🏪 Tiệm Tạp Hóa Nhỏ</h1>
+
+        <div class="money">
+            💰 <span id="money">2000000</span>đ
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- THÔNG TIN NGÀY -->
+        <section class="top-info">
+
+            <div>
+                📅 Ngày:
+                <strong id="day">1</strong>
+            </div>
+
+            <div>
+                📦 Hàng trong kho:
+                <strong id="warehouse">0</strong>
+            </div>
+
+            <div>
+                💵 Doanh thu:
+                <strong id="revenue">0</strong>đ
+            </div>
+
+        </section>
+
+
+        <!-- CỬA HÀNG -->
+        <section class="shop">
+
+            <h2>🛒 Cửa hàng</h2>
+
+            <div class="shelf-container">
+
+                <div class="shelf">
+                    <h3>🗄️ Kệ 1</h3>
+                    <p id="shelf1">Trống</p>
+
+                    <button onclick="putProductOnShelf(0)">
+                        Đặt hàng lên kệ
+                    </button>
+                </div>
+
+
+                <div class="shelf">
+                    <h3>🗄️ Kệ 2</h3>
+                    <p id="shelf2">Trống</p>
+
+                    <button onclick="putProductOnShelf(1)">
+                        Đặt hàng lên kệ
+                    </button>
+                </div>
+
+
+                <div class="cashier">
+                    🧾
+
+                    <h3>Quầy thu ngân</h3>
+
+                    <p>
+                        Khách hôm nay:
+                        <strong id="customers">0</strong>
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NHẬP HÀNG -->
+        <section class="panel">
+
+            <h2>📦 Nhập hàng</h2>
+
+            <div class="product">
+
+                <span>🥤 Nước ngọt</span>
+
+                <span>
+                    Giá nhập:
+                    <strong>8.000đ</strong>
+                </span>
+
+                <button onclick="buyProduct()">
+                    Nhập 1
+                </button>
+
+                <button onclick="buyProduct(10)">
+                    Nhập 10
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- BÁN HÀNG -->
+        <section class="panel">
+
+            <h2>👥 Khách hàng</h2>
+
+            <button class="big-button" onclick="serveCustomer()">
+                🛍️ Phục vụ khách
+            </button>
+
+            <p id="message">
+                Chưa có khách.
+            </p>
+
+        </section>
+
+
+        <!-- ONLINE -->
+        <section class="panel">
+
+            <h2>📱 Đơn hàng online</h2>
+
+            <p id="online-order">
+                Chưa có đơn hàng.
+            </p>
+
+            <button onclick="createOnlineOrder()">
+                📱 Kiểm tra đơn mới
+            </button>
+
+            <button onclick="completeOnlineOrder()">
+                📦 Đóng gói đơn
+            </button>
+
+        </section>
+
+
+        <!-- KẾT THÚC NGÀY -->
+        <section class="panel">
+
+            <button class="end-day" onclick="endDay()">
+                🌙 Kết thúc ngày
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="game.js"></script>
+
+</body>
+</html>
