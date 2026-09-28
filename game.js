@@ -1,301 +1,135 @@
 let money = 2000000;
-
 let day = 1;
 
-let warehouse = 0;
+let products = {
+    "Nước ngọt": {
+        buyPrice: 8000,
+        sellPrice: 12000,
+        stock: 0,
+        shelf: 0,
+        maxShelf: 20
+    }
+};
 
-let revenue = 0;
+let customers = [
+    "Bà Năm",
+    "Chị Hồng",
+    "Ông Tuân",
+    "Bác Vy",
+    "Chị Mai",
+    "Anh Tuấn"
+];
 
-let customers = 0;
-
-let shelf = [0, 0];
-
-let onlineOrder = false;
-
-
-// ======================
-// CẬP NHẬT GIAO DIỆN
-// ======================
-
-function updateUI() {
-
+function updateScreen() {
     document.getElementById("money").textContent =
-        money.toLocaleString("vi-VN");
+        money.toLocaleString("vi-VN") + "đ";
 
-    document.getElementById("day").textContent =
-        day;
+    document.getElementById("day").textContent = day;
 
     document.getElementById("warehouse").textContent =
-        warehouse;
+        products["Nước ngọt"].stock;
 
-    document.getElementById("revenue").textContent =
-        revenue.toLocaleString("vi-VN");
-
-    document.getElementById("customers").textContent =
-        customers;
-
-
-    document.getElementById("shelf1").textContent =
-        shelf[0] > 0
-            ? `🥤 Nước ngọt × ${shelf[0]}`
-            : "Trống";
-
-
-    document.getElementById("shelf2").textContent =
-        shelf[1] > 0
-            ? `🥤 Nước ngọt × ${shelf[1]}`
-            : "Trống";
+    document.getElementById("shelf").textContent =
+        products["Nước ngọt"].shelf;
 }
 
+function buyProduct() {
+    const product = products["Nước ngọt"];
+    const amount = 10;
 
-// ======================
-// NHẬP HÀNG
-// ======================
+    const cost = product.buyPrice * amount;
 
-function buyProduct(amount = 1) {
-
-    const price = 8000;
-
-    const total = price * amount;
-
-
-    if (money < total) {
-
-        showMessage("❌ Không đủ tiền nhập hàng!");
-
+    if (money < cost) {
+        addLog("💸 Không đủ tiền để nhập hàng!");
         return;
     }
 
+    money -= cost;
+    product.stock += amount;
 
-    money -= total;
+    addLog(`📦 Đã nhập ${amount} chai nước ngọt.`);
+    updateScreen();
+}
 
-    warehouse += amount;
+function putOnShelf() {
+    const product = products["Nước ngọt"];
 
+    if (product.stock <= 0) {
+        addLog("📦 Kho đang hết hàng!");
+        return;
+    }
 
-    showMessage(
-        `📦 Đã nhập ${amount} chai nước ngọt.`
+    if (product.shelf >= product.maxShelf) {
+        addLog("🗄️ Kệ đã đầy!");
+        return;
+    }
+
+    product.stock--;
+    product.shelf++;
+
+    addLog("🗄️ Đã đặt 1 chai nước ngọt lên kệ.");
+    updateScreen();
+}
+
+function customerBuy() {
+    const product = products["Nước ngọt"];
+
+    if (product.shelf <= 0) {
+        addLog("😟 Khách vào nhưng kệ đang hết hàng.");
+        return;
+    }
+
+    const customer =
+        customers[Math.floor(Math.random() * customers.length)];
+
+    product.shelf--;
+    money += product.sellPrice;
+
+    addLog(
+        `🛒 ${customer} đã mua 1 chai nước ngọt. +${product.sellPrice.toLocaleString("vi-VN")}đ`
     );
 
-
-    updateUI();
+    updateScreen();
 }
 
+function onlineOrder() {
+    const product = products["Nước ngọt"];
+    const amount = 2;
 
-// ======================
-// ĐẶT HÀNG LÊN KỆ
-// ======================
-
-function putProductOnShelf(index) {
-
-    const capacity = 20;
-
-
-    if (warehouse <= 0) {
-
-        showMessage(
-            "❌ Kho không còn hàng!"
-        );
-
+    if (product.stock < amount) {
+        addLog("📱 Không đủ hàng để xử lý đơn online!");
         return;
     }
 
+    product.stock -= amount;
 
-    if (shelf[index] >= capacity) {
+    const revenue = product.sellPrice * amount;
+    money += revenue;
 
-        showMessage(
-            "🗄️ Kệ đã đầy!"
-        );
-
-        return;
-    }
-
-
-    warehouse--;
-
-    shelf[index]++;
-
-
-    showMessage(
-        "🗄️ Đã đặt một chai nước lên kệ."
+    addLog(
+        `📱 Đơn online: bán ${amount} chai nước ngọt. +${revenue.toLocaleString("vi-VN")}đ`
     );
 
-
-    updateUI();
+    updateScreen();
 }
-
-
-// ======================
-// PHỤC VỤ KHÁCH
-// ======================
-
-function serveCustomer() {
-
-    const totalProducts =
-        shelf[0] + shelf[1];
-
-
-    if (totalProducts <= 0) {
-
-        showMessage(
-            "😐 Khách vào nhưng không có hàng để mua!"
-        );
-
-        return;
-    }
-
-
-    let index =
-        shelf[0] > 0
-            ? 0
-            : 1;
-
-
-    shelf[index]--;
-
-
-    const sellPrice = 12000;
-
-
-    money += sellPrice;
-
-    revenue += sellPrice;
-
-    customers++;
-
-
-    showMessage(
-        "🛍️ Khách đã mua 1 chai nước. +12.000đ"
-    );
-
-
-    updateUI();
-}
-
-
-// ======================
-// ĐƠN ONLINE
-// ======================
-
-function createOnlineOrder() {
-
-    if (onlineOrder) {
-
-        showMessage(
-            "📱 Bạn đang có một đơn chưa xử lý."
-        );
-
-        return;
-    }
-
-
-    onlineOrder = true;
-
-
-    document.getElementById("online-order").textContent =
-        "📱 Đơn mới: 2 chai nước ngọt";
-
-
-    showMessage(
-        "📱 Có đơn hàng online mới!"
-    );
-}
-
-
-// ======================
-// HOÀN THÀNH ĐƠN
-// ======================
-
-function completeOnlineOrder() {
-
-    if (!onlineOrder) {
-
-        showMessage(
-            "📱 Chưa có đơn hàng."
-        );
-
-        return;
-    }
-
-
-    if (shelf[0] + shelf[1] < 2) {
-
-        showMessage(
-            "❌ Không đủ hàng để đóng đơn!"
-        );
-
-        return;
-    }
-
-
-    for (let i = 0; i < 2; i++) {
-
-        if (shelf[0] > 0) {
-            shelf[0]--;
-        }
-
-        else {
-            shelf[1]--;
-        }
-    }
-
-
-    const price = 24000;
-
-
-    money += price;
-
-    revenue += price;
-
-    onlineOrder = false;
-
-
-    document.getElementById("online-order").textContent =
-        "Chưa có đơn hàng.";
-
-
-    showMessage(
-        "📦 Đã giao đơn online. +24.000đ"
-    );
-
-
-    updateUI();
-}
-
-
-// ======================
-// KẾT THÚC NGÀY
-// ======================
 
 function endDay() {
-
     day++;
 
+    addLog(`🌙 Đã kết thúc ngày. Chào ngày ${day}!`);
 
-    customers = 0;
-
-    revenue = 0;
-
-
-    showMessage(
-        `🌙 Ngày mới bắt đầu! Hôm nay là ngày ${day}.`
-    );
-
-
-    updateUI();
+    updateScreen();
 }
 
+function addLog(message) {
+    const log = document.getElementById("log");
 
-// ======================
-// THÔNG BÁO
-// ======================
+    const item = document.createElement("div");
+    item.textContent = message;
 
-function showMessage(text) {
-
-    document.getElementById("message").textContent =
-        text;
+    log.prepend(item);
 }
 
+updateScreen();
 
-// CHẠY LẦN ĐẦU
-
-updateUI();
+addLog("🏪 Chào mừng bạn đến với Tiệm Tạp Hóa Nhỏ!");
