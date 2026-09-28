@@ -11,124 +11,303 @@
 
 <body>
 
-    <div class="game">
+<div class="game">
 
-        <header>
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="shop-title">
+            <div class="shop-icon">🏪</div>
+
             <div>
-                <h1>🏪 Tiệm Tạp Hóa Nhỏ</h1>
-                <p>Quản lý cửa hàng của bạn</p>
+                <h1>Tiệm Tạp Hóa Nhỏ</h1>
+                <p>Một cửa hàng nhỏ, một cuộc sống lớn ✨</p>
+            </div>
+        </div>
+
+        <div class="stats">
+
+            <div class="money">
+                <span>💰</span>
+                <div>
+                    <small>Tiền mặt</small>
+                    <strong id="money">2.000.000đ</strong>
+                </div>
             </div>
 
-            <div class="status">
-                <div>💰 <span id="money">2.000.000đ</span></div>
-                <div>🌤️ Ngày <span id="day">1</span></div>
+            <div class="day">
+                <span>🌤️</span>
+                <div>
+                    <small>Ngày</small>
+                    <strong id="day">1</strong>
+                </div>
             </div>
-        </header>
+
+        </div>
+
+    </header>
 
 
-        <main>
+    <!-- ================= CỬA HÀNG ================= -->
 
-            <!-- KHU VỰC CỬA HÀNG -->
-            <section class="store">
+    <main>
 
-                <h2>🛍️ Cửa hàng</h2>
+        <section class="shop-room">
 
-                <div class="shelf-box">
+            <div class="room-header">
+                <div>
+                    <h2>Tiệm của bạn</h2>
+                    <p>Hãy giữ cho kệ hàng luôn đầy nhé!</p>
+                </div>
 
-                    <div class="shelf">
-                        <div class="product">🥤</div>
-                        <div>
-                            <strong>Nước ngọt</strong>
-                            <p>Trên kệ: <span id="shelf">0</span>/20</p>
-                        </div>
+                <div class="open-status">
+                    ● Đang mở cửa
+                </div>
+            </div>
+
+
+            <!-- SÀN CỬA HÀNG -->
+
+            <div class="shop-floor">
+
+                <!-- Cửa -->
+
+                <div class="entrance">
+                    <div class="door">🚪</div>
+                    <span>Cửa ra vào</span>
+                </div>
+
+
+                <!-- KỆ 1 -->
+
+                <div class="shelf furniture">
+
+                    <div class="shelf-sign">
+                        NƯỚC GIẢI KHÁT
+                    </div>
+
+                    <div class="shelf-products">
+
+                        <div class="bottle">🥤</div>
+                        <div class="bottle">🥤</div>
+                        <div class="bottle">🥤</div>
+                        <div class="bottle">🥤</div>
+
+                    </div>
+
+                    <div class="shelf-bottom"></div>
+
+                    <div class="stock-number">
+                        <span id="shelf">0</span>/20
                     </div>
 
                 </div>
 
-                <button onclick="customerBuy()">
-                    🛒 Khách mua hàng
-                </button>
 
-            </section>
+                <!-- KỆ 2 -->
+
+                <div class="shelf furniture empty-shelf">
+
+                    <div class="shelf-sign">
+                        KỆ TRỐNG
+                    </div>
+
+                    <div class="empty-message">
+                        <span>🛒</span>
+                        <small>Sắp xếp hàng hóa</small>
+                    </div>
+
+                    <div class="shelf-bottom"></div>
+
+                </div>
+
+
+                <!-- CHỦ TIỆM -->
+
+                <div class="owner">
+
+                    <div class="owner-shadow"></div>
+
+                    <div class="owner-character">
+                        🧑🏻
+                    </div>
+
+                    <div class="owner-body">
+                        👕
+                    </div>
+
+                    <div class="owner-name">
+                        Chủ tiệm
+                    </div>
+
+                </div>
+
+
+                <!-- QUẦY TÍNH TIỀN -->
+
+                <div class="cashier furniture">
+
+                    <div class="cashier-machine">
+                        🧾
+                    </div>
+
+                    <div class="cashier-label">
+                        QUẦY TÍNH TIỀN
+                    </div>
+
+                </div>
+
+
+                <!-- TRANG TRÍ -->
+
+                <div class="plant plant-one">🪴</div>
+                <div class="plant plant-two">🌿</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= KHU ĐIỀU KHIỂN ================= -->
+
+        <section class="control-panel">
+
+            <h2>Quản lý tiệm</h2>
+
+            <p class="panel-description">
+                Chọn việc bạn muốn làm hôm nay
+            </p>
 
 
             <!-- KHO -->
-            <section class="warehouse">
 
-                <h2>📦 Kho hàng</h2>
+            <div class="action-card warehouse-card">
 
-                <div class="warehouse-item">
-                    <div class="big-icon">🥤</div>
-
-                    <div>
-                        <strong>Nước ngọt</strong>
-                        <p>
-                            Trong kho:
-                            <span id="warehouse">0</span>
-                        </p>
-                    </div>
+                <div class="action-icon">
+                    📦
                 </div>
 
-                <button onclick="buyProduct()">
-                    📦 Nhập 10 chai
-                </button>
+                <div class="action-info">
 
-                <button onclick="putOnShelf()">
-                    🗄️ Đưa lên kệ
-                </button>
+                    <h3>Kho hàng</h3>
 
-            </section>
-
-
-            <!-- ĐƠN ONLINE -->
-            <section class="online">
-
-                <h2>📱 Đơn hàng online</h2>
-
-                <div class="order">
-
-                    <div class="customer-avatar">
-                        📱
-                    </div>
-
-                    <div>
-                        <strong>Đơn hàng mới</strong>
-                        <p>2 chai nước ngọt</p>
-                    </div>
+                    <p>
+                        Nước ngọt:
+                        <strong id="warehouse">0</strong> chai
+                    </p>
 
                 </div>
 
-                <button onclick="onlineOrder()">
-                    📦 Đóng gói & giao hàng
+                <div class="action-buttons">
+
+                    <button onclick="buyProduct()">
+                        📦 Nhập 10 chai
+                    </button>
+
+                    <button onclick="putOnShelf()">
+                        🗄️ Đưa lên kệ
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- KHÁCH -->
+
+            <div class="action-card customer-card">
+
+                <div class="action-icon">
+                    🛒
+                </div>
+
+                <div class="action-info">
+
+                    <h3>Khách trong tiệm</h3>
+
+                    <p>
+                        Hãy phục vụ khách thật tốt!
+                    </p>
+
+                </div>
+
+                <button
+                    class="main-action"
+                    onclick="customerBuy()">
+                    Khách mua hàng
                 </button>
 
-            </section>
+            </div>
+
+
+            <!-- ONLINE -->
+
+            <div class="action-card online-card">
+
+                <div class="action-icon">
+                    📱
+                </div>
+
+                <div class="action-info">
+
+                    <h3>Đơn hàng online</h3>
+
+                    <p>
+                        1 đơn mới · 2 chai nước ngọt
+                    </p>
+
+                </div>
+
+                <button
+                    class="main-action"
+                    onclick="onlineOrder()">
+                    📦 Đóng gói
+                </button>
+
+            </div>
 
 
             <!-- NHẬT KÝ -->
-            <section class="log-box">
 
-                <h2>💬 Nhật ký cửa hàng</h2>
+            <div class="log-card">
+
+                <div class="log-title">
+                    <span>💬</span>
+                    <h3>Chuyện trong ngày</h3>
+                </div>
 
                 <div id="log"></div>
 
-            </section>
+            </div>
 
-        </main>
+        </section>
 
-
-        <footer>
-
-            <button class="end-day" onclick="endDay()">
-                🌙 Kết thúc ngày
-            </button>
-
-        </footer>
-
-    </div>
+    </main>
 
 
-    <script src="game.js"></script>
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-tip">
+            💡 Đừng quên kiểm tra kho trước khi đóng cửa!
+        </div>
+
+        <button
+            class="end-day"
+            onclick="endDay()">
+
+            🌙 Đóng cửa & kết thúc ngày
+
+        </button>
+
+    </footer>
+
+</div>
+
+
+<script src="game.js"></script>
 
 </body>
 </html>
