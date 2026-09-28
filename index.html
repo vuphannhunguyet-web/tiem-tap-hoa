@@ -1,135 +1,134 @@
-let money = 2000000;
-let day = 1;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-let products = {
-    "Nước ngọt": {
-        buyPrice: 8000,
-        sellPrice: 12000,
-        stock: 0,
-        shelf: 0,
-        maxShelf: 20
-    }
-};
+    <title>Tiệm Tạp Hóa Nhỏ</title>
 
-let customers = [
-    "Bà Năm",
-    "Chị Hồng",
-    "Ông Tuân",
-    "Bác Vy",
-    "Chị Mai",
-    "Anh Tuấn"
-];
+    <link rel="stylesheet" href="style.css">
+</head>
 
-function updateScreen() {
-    document.getElementById("money").textContent =
-        money.toLocaleString("vi-VN") + "đ";
+<body>
 
-    document.getElementById("day").textContent = day;
+    <div class="game">
 
-    document.getElementById("warehouse").textContent =
-        products["Nước ngọt"].stock;
+        <header>
+            <div>
+                <h1>🏪 Tiệm Tạp Hóa Nhỏ</h1>
+                <p>Quản lý cửa hàng của bạn</p>
+            </div>
 
-    document.getElementById("shelf").textContent =
-        products["Nước ngọt"].shelf;
-}
+            <div class="status">
+                <div>💰 <span id="money">2.000.000đ</span></div>
+                <div>🌤️ Ngày <span id="day">1</span></div>
+            </div>
+        </header>
 
-function buyProduct() {
-    const product = products["Nước ngọt"];
-    const amount = 10;
 
-    const cost = product.buyPrice * amount;
+        <main>
 
-    if (money < cost) {
-        addLog("💸 Không đủ tiền để nhập hàng!");
-        return;
-    }
+            <!-- KHU VỰC CỬA HÀNG -->
+            <section class="store">
 
-    money -= cost;
-    product.stock += amount;
+                <h2>🛍️ Cửa hàng</h2>
 
-    addLog(`📦 Đã nhập ${amount} chai nước ngọt.`);
-    updateScreen();
-}
+                <div class="shelf-box">
 
-function putOnShelf() {
-    const product = products["Nước ngọt"];
+                    <div class="shelf">
+                        <div class="product">🥤</div>
+                        <div>
+                            <strong>Nước ngọt</strong>
+                            <p>Trên kệ: <span id="shelf">0</span>/20</p>
+                        </div>
+                    </div>
 
-    if (product.stock <= 0) {
-        addLog("📦 Kho đang hết hàng!");
-        return;
-    }
+                </div>
 
-    if (product.shelf >= product.maxShelf) {
-        addLog("🗄️ Kệ đã đầy!");
-        return;
-    }
+                <button onclick="customerBuy()">
+                    🛒 Khách mua hàng
+                </button>
 
-    product.stock--;
-    product.shelf++;
+            </section>
 
-    addLog("🗄️ Đã đặt 1 chai nước ngọt lên kệ.");
-    updateScreen();
-}
 
-function customerBuy() {
-    const product = products["Nước ngọt"];
+            <!-- KHO -->
+            <section class="warehouse">
 
-    if (product.shelf <= 0) {
-        addLog("😟 Khách vào nhưng kệ đang hết hàng.");
-        return;
-    }
+                <h2>📦 Kho hàng</h2>
 
-    const customer =
-        customers[Math.floor(Math.random() * customers.length)];
+                <div class="warehouse-item">
+                    <div class="big-icon">🥤</div>
 
-    product.shelf--;
-    money += product.sellPrice;
+                    <div>
+                        <strong>Nước ngọt</strong>
+                        <p>
+                            Trong kho:
+                            <span id="warehouse">0</span>
+                        </p>
+                    </div>
+                </div>
 
-    addLog(
-        `🛒 ${customer} đã mua 1 chai nước ngọt. +${product.sellPrice.toLocaleString("vi-VN")}đ`
-    );
+                <button onclick="buyProduct()">
+                    📦 Nhập 10 chai
+                </button>
 
-    updateScreen();
-}
+                <button onclick="putOnShelf()">
+                    🗄️ Đưa lên kệ
+                </button>
 
-function onlineOrder() {
-    const product = products["Nước ngọt"];
-    const amount = 2;
+            </section>
 
-    if (product.stock < amount) {
-        addLog("📱 Không đủ hàng để xử lý đơn online!");
-        return;
-    }
 
-    product.stock -= amount;
+            <!-- ĐƠN ONLINE -->
+            <section class="online">
 
-    const revenue = product.sellPrice * amount;
-    money += revenue;
+                <h2>📱 Đơn hàng online</h2>
 
-    addLog(
-        `📱 Đơn online: bán ${amount} chai nước ngọt. +${revenue.toLocaleString("vi-VN")}đ`
-    );
+                <div class="order">
 
-    updateScreen();
-}
+                    <div class="customer-avatar">
+                        📱
+                    </div>
 
-function endDay() {
-    day++;
+                    <div>
+                        <strong>Đơn hàng mới</strong>
+                        <p>2 chai nước ngọt</p>
+                    </div>
 
-    addLog(`🌙 Đã kết thúc ngày. Chào ngày ${day}!`);
+                </div>
 
-    updateScreen();
-}
+                <button onclick="onlineOrder()">
+                    📦 Đóng gói & giao hàng
+                </button>
 
-function addLog(message) {
-    const log = document.getElementById("log");
+            </section>
 
-    const item = document.createElement("div");
-    item.textContent = message;
 
-    log.prepend(item);
-}
+            <!-- NHẬT KÝ -->
+            <section class="log-box">
 
-updateScreen();
+                <h2>💬 Nhật ký cửa hàng</h2>
 
-addLog("🏪 Chào mừng bạn đến với Tiệm Tạp Hóa Nhỏ!");
+                <div id="log"></div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+
+            <button class="end-day" onclick="endDay()">
+                🌙 Kết thúc ngày
+            </button>
+
+        </footer>
+
+    </div>
+
+
+    <script src="game.js"></script>
+
+</body>
+</html>
