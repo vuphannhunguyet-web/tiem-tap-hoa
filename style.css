@@ -2,306 +2,1002 @@
     box-sizing: border-box;
 }
 
+:root {
+    --cream: #fff7e8;
+    --cream-dark: #f3dfc4;
+    --pink: #ee7898;
+    --pink-light: #ffe4ec;
+    --brown: #624438;
+    --brown-light: #947466;
+    --green: #789d82;
+    --green-dark: #557761;
+    --white: #fffdf9;
+    --yellow: #f5c96b;
+    --floor: #f9e9d3;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff5e5;
-    color: #5b392d;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            #fffdf8 0,
+            #fff7e8 35%,
+            #f8e6cf 100%
+        );
+
+    color: var(--brown);
 }
+
+
+/* =========================================
+   GAME
+========================================= */
 
 .game {
-    max-width: 1100px;
+    width: min(1250px, 94%);
     margin: auto;
-    padding: 25px;
+    padding: 25px 0 35px;
 }
 
-/* ===== HEADER ===== */
 
-header {
-    background: #ffffff;
-    border: 3px solid #ead7bd;
-    border-radius: 25px;
-    padding: 20px 25px;
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+    background: var(--white);
+
+    border: 3px solid var(--cream-dark);
+    border-radius: 28px;
+
+    padding: 17px 22px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    box-shadow: 0 6px 0 #ead7bd;
+    box-shadow:
+        0 7px 0 var(--cream-dark),
+        0 12px 25px rgba(98, 68, 56, 0.08);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 30px;
-    color: #5b392d;
-}
 
-header p {
-    margin: 6px 0 0;
-    color: #987b69;
-}
-
-.status {
+.shop-title {
     display: flex;
-    gap: 15px;
-}
-
-.status div {
-    background: #fff0b8;
-    border-radius: 15px;
-    padding: 12px 18px;
-    font-weight: bold;
+    align-items: center;
+    gap: 14px;
 }
 
 
-/* ===== MAIN ===== */
+.shop-icon {
+    width: 62px;
+    height: 62px;
+
+    background: var(--pink-light);
+
+    border-radius: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    transform: rotate(-3deg);
+}
+
+
+.shop-title h1 {
+    margin: 0;
+
+    font-size: 29px;
+    letter-spacing: -0.5px;
+}
+
+
+.shop-title p {
+    margin: 5px 0 0;
+
+    color: var(--brown-light);
+    font-size: 14px;
+}
+
+
+.stats {
+    display: flex;
+    gap: 10px;
+}
+
+
+.money,
+.day {
+    min-width: 150px;
+
+    background: var(--cream);
+
+    border: 2px solid var(--cream-dark);
+
+    border-radius: 17px;
+
+    padding: 9px 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+
+.money > span,
+.day > span {
+    font-size: 25px;
+}
+
+
+.money small,
+.day small {
+    display: block;
+
+    font-size: 11px;
+
+    color: var(--brown-light);
+}
+
+
+.money strong,
+.day strong {
+    display: block;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
 
 main {
     margin-top: 25px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(360px, 0.8fr);
+
+    gap: 22px;
 }
 
-section {
-    background: white;
-    border: 3px solid #ead7bd;
-    border-radius: 22px;
-    padding: 20px;
 
-    box-shadow: 0 5px 0 #ead7bd;
+/* =========================================
+   SHOP ROOM
+========================================= */
+
+.shop-room {
+    background: var(--white);
+
+    border: 3px solid var(--cream-dark);
+
+    border-radius: 28px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 7px 0 var(--cream-dark),
+        0 12px 25px rgba(98, 68, 56, 0.08);
 }
 
-section h2 {
-    margin-top: 0;
+
+.room-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 3px 5px 14px;
+}
+
+
+.room-header h2 {
+    margin: 0;
     font-size: 22px;
 }
 
 
-/* ===== STORE ===== */
+.room-header p {
+    margin: 4px 0 0;
 
-.store {
-    min-height: 280px;
+    color: var(--brown-light);
+    font-size: 13px;
 }
 
-.shelf-box {
-    background: #fff8ef;
-    border-radius: 18px;
-    padding: 15px;
-    margin-bottom: 15px;
+
+.open-status {
+    background: #e5f3e7;
+
+    color: var(--green-dark);
+
+    border-radius: 20px;
+
+    padding: 8px 12px;
+
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.shelf {
-    background: #ead7bd;
-    border-radius: 14px;
-    padding: 15px;
+
+/* =========================================
+   SHOP FLOOR
+========================================= */
+
+.shop-floor {
+
+    position: relative;
+
+    min-height: 590px;
+
+    overflow: hidden;
+
+    border-radius: 23px;
+
+    background-color: var(--floor);
+
+    background-image:
+        linear-gradient(
+            45deg,
+            rgba(255,255,255,.22) 25%,
+            transparent 25%,
+            transparent 75%,
+            rgba(255,255,255,.22) 75%
+        );
+
+    background-size: 42px 42px;
+
+    border: 3px solid #ead2b5;
+
+}
+
+
+/* =========================================
+   ENTRANCE
+========================================= */
+
+.entrance {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 120px;
+    height: 76px;
+
+    background: #d4a87c;
+
+    border: 4px solid #b9865b;
+
+    border-bottom: none;
+
+    border-radius: 18px 18px 0 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
-}
-
-.product {
-    width: 65px;
-    height: 65px;
-
-    background: #ffffff;
-    border-radius: 15px;
-
-    display: flex;
     justify-content: center;
-    align-items: center;
 
-    font-size: 38px;
-}
+    color: white;
 
-.shelf p,
-.warehouse-item p {
-    margin: 6px 0 0;
-    color: #987b69;
+    font-size: 11px;
 }
 
 
-/* ===== WAREHOUSE ===== */
-
-.warehouse-item {
-    background: #fff8ef;
-    border-radius: 18px;
-    padding: 15px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    margin-bottom: 15px;
-}
-
-.big-icon {
-    width: 70px;
-    height: 70px;
-
-    background: #ffe2ea;
-    border-radius: 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 40px;
-}
-
-
-/* ===== ONLINE ORDER ===== */
-
-.online {
-    min-height: 230px;
-}
-
-.order {
-    background: #fcebf0;
-    border-radius: 18px;
-    padding: 15px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    margin-bottom: 15px;
-}
-
-.customer-avatar {
-    width: 60px;
-    height: 60px;
-
-    background: #ffffff;
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.door {
     font-size: 30px;
 }
 
-.order p {
-    margin: 6px 0 0;
-    color: #987b69;
+
+/* =========================================
+   SHELVES
+========================================= */
+
+.furniture {
+    position: absolute;
+
+    background: #c99869;
+
+    border: 4px solid #a9764e;
+
+    box-shadow:
+        inset 0 -9px 0 rgba(91, 57, 45, .12),
+        0 6px 0 rgba(91, 57, 45, .10);
+
+    border-radius: 12px;
 }
 
 
-/* ===== BUTTON ===== */
+.shelf {
+    width: 215px;
+    height: 155px;
+
+    top: 45px;
+    left: 35px;
+}
+
+
+.shelf:nth-of-type(2) {
+    top: 45px;
+    right: 35px;
+    left: auto;
+}
+
+
+.shelf-sign {
+    position: absolute;
+
+    top: -18px;
+    left: 18px;
+    right: 18px;
+
+    padding: 7px;
+
+    background: #fff3cf;
+
+    border: 3px solid #d8b26d;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    color: #73563c;
+}
+
+
+.shelf-products {
+    position: absolute;
+
+    top: 45px;
+    left: 15px;
+    right: 15px;
+
+    height: 54px;
+
+    background: #e9c59d;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border-bottom: 8px solid #b77e50;
+}
+
+
+.bottle {
+    font-size: 29px;
+
+    filter:
+        drop-shadow(
+            0 3px 2px rgba(0,0,0,.12)
+        );
+}
+
+
+.shelf-bottom {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 14px;
+
+    height: 20px;
+
+    background: #e4b987;
+
+    border-radius: 5px;
+}
+
+
+.stock-number {
+    position: absolute;
+
+    bottom: -31px;
+    right: 10px;
+
+    background: white;
+
+    padding: 4px 9px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   EMPTY SHELF
+========================================= */
+
+.empty-shelf {
+    top: 275px;
+    left: 35px;
+
+    width: 215px;
+    height: 145px;
+
+    background: #d8ad80;
+}
+
+
+.empty-message {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #8c674d;
+}
+
+
+.empty-message span {
+    font-size: 32px;
+}
+
+
+.empty-message small {
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   OWNER
+========================================= */
+
+.owner {
+    position: absolute;
+
+    left: 50%;
+    top: 230px;
+
+    transform: translateX(-50%);
+
+    width: 100px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+.owner-shadow {
+    position: absolute;
+
+    width: 80px;
+    height: 20px;
+
+    background: rgba(91,57,45,.15);
+
+    border-radius: 50%;
+
+    bottom: 1px;
+    left: 10px;
+}
+
+
+.owner-character {
+    position: relative;
+
+    font-size: 62px;
+
+    line-height: 55px;
+
+    z-index: 2;
+}
+
+
+.owner-body {
+    position: relative;
+
+    font-size: 52px;
+
+    line-height: 35px;
+
+    z-index: 1;
+}
+
+
+.owner-name {
+    margin-top: 10px;
+
+    background: white;
+
+    border: 2px solid #e5cbb0;
+
+    border-radius: 12px;
+
+    padding: 4px 8px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================================
+   CASHIER
+========================================= */
+
+.cashier {
+    right: 35px;
+    bottom: 65px;
+
+    width: 190px;
+    height: 105px;
+
+    background: #d9a878;
+}
+
+
+.cashier-machine {
+    position: absolute;
+
+    left: 50%;
+    top: 20px;
+
+    transform: translateX(-50%);
+
+    width: 55px;
+    height: 45px;
+
+    background: #fff7e8;
+
+    border: 3px solid #a9764e;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.cashier-label {
+    position: absolute;
+
+    bottom: -25px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    color: #79553e;
+}
+
+
+/* =========================================
+   DECORATION
+========================================= */
+
+.plant {
+    position: absolute;
+
+    font-size: 43px;
+}
+
+
+.plant-one {
+    right: 25px;
+    top: 230px;
+}
+
+
+.plant-two {
+    left: 275px;
+    bottom: 35px;
+}
+
+
+/* =========================================
+   CONTROL PANEL
+========================================= */
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+
+.control-panel > h2 {
+    margin: 4px 4px 0;
+
+    font-size: 22px;
+}
+
+
+.panel-description {
+    margin: -8px 4px 3px;
+
+    color: var(--brown-light);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   ACTION CARD
+========================================= */
+
+.action-card {
+    background: var(--white);
+
+    border: 3px solid var(--cream-dark);
+
+    border-radius: 20px;
+
+    padding: 13px;
+
+    display: grid;
+
+    grid-template-columns: 50px 1fr auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-shadow:
+        0 5px 0 var(--cream-dark);
+}
+
+
+.action-icon {
+    width: 46px;
+    height: 46px;
+
+    background: var(--pink-light);
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.action-info h3 {
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+.action-info p {
+    margin: 4px 0 0;
+
+    color: var(--brown-light);
+
+    font-size: 12px;
+}
+
+
+.action-info strong {
+    color: var(--pink);
+}
+
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
 
 button {
     border: none;
-    border-radius: 14px;
 
-    padding: 12px 18px;
-    margin: 4px;
+    background: var(--pink);
 
-    background: #f06b91;
     color: white;
 
-    font-size: 15px;
+    padding: 9px 12px;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 12px;
     font-weight: bold;
 
     cursor: pointer;
 
-    box-shadow: 0 4px 0 #c94f73;
+    box-shadow:
+        0 4px 0 #ca5576;
 
-    transition: 0.15s;
+    transition:
+        transform .12s,
+        box-shadow .12s;
 }
+
 
 button:hover {
     transform: translateY(-2px);
 }
 
+
 button:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 0 #c94f73;
+
+    box-shadow:
+        0 2px 0 #ca5576;
 }
 
 
-/* ===== LOG ===== */
-
-.log-box {
-    grid-column: 1 / 3;
+.main-action {
+    min-width: 105px;
 }
+
+
+/* =========================================
+   DIFFERENT CARD COLORS
+========================================= */
+
+.warehouse-card .action-icon {
+    background: #fff0c9;
+}
+
+
+.customer-card .action-icon {
+    background: #e2f1e4;
+}
+
+
+.online-card .action-icon {
+    background: #e9e0f7;
+}
+
+
+/* =========================================
+   LOG
+========================================= */
+
+.log-card {
+    background: var(--white);
+
+    border: 3px solid var(--cream-dark);
+
+    border-radius: 20px;
+
+    padding: 13px;
+
+    box-shadow:
+        0 5px 0 var(--cream-dark);
+
+    min-height: 145px;
+}
+
+
+.log-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.log-title span {
+    font-size: 20px;
+}
+
+
+.log-title h3 {
+    margin: 0;
+
+    font-size: 15px;
+}
+
 
 #log {
-    max-height: 220px;
+    margin-top: 9px;
+
+    max-height: 105px;
+
     overflow-y: auto;
-
-    background: #fff8ef;
-    border-radius: 15px;
-
-    padding: 10px;
 }
+
 
 #log div {
-    background: white;
-    border-radius: 12px;
+    padding: 6px 8px;
 
-    padding: 10px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 
-    border: 1px solid #ead7bd;
+    background: #fff8ef;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    color: #795b4b;
 }
 
 
-/* ===== FOOTER ===== */
+/* =========================================
+   FOOTER
+========================================= */
 
 footer {
-    text-align: center;
     margin-top: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 5px;
 }
+
+
+.footer-tip {
+    color: var(--brown-light);
+
+    font-size: 12px;
+}
+
 
 .end-day {
-    background: #315846;
-    box-shadow: 0 4px 0 #203d30;
+    background: var(--green-dark);
 
-    padding: 15px 35px;
-    font-size: 17px;
+    box-shadow:
+        0 5px 0 #405f4a;
+
+    padding: 12px 20px;
+
+    border-radius: 14px;
+
+    font-size: 13px;
 }
+
 
 .end-day:active {
-    box-shadow: 0 2px 0 #203d30;
+    box-shadow:
+        0 2px 0 #405f4a;
 }
 
 
-/* ===== MOBILE ===== */
+/* =========================================
+   MOBILE
+========================================= */
 
-@media (max-width: 700px) {
-
-    .game {
-        padding: 12px;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-
-    .status {
-        flex-direction: column;
-        gap: 8px;
-    }
+@media (max-width: 950px) {
 
     main {
         grid-template-columns: 1fr;
     }
 
-    .log-box {
-        grid-column: auto;
+    .shop-floor {
+        min-height: 560px;
     }
 
-    header h1 {
-        font-size: 24px;
+}
+
+
+@media (max-width: 650px) {
+
+    .game {
+        width: 96%;
+        padding-top: 10px;
     }
 
-    button {
-        width: 100%;
-        margin: 4px 0;
+
+    .topbar {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
     }
+
+
+    .shop-title h1 {
+        font-size: 23px;
+    }
+
+
+    .stats {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .money,
+    .day {
+        min-width: 0;
+    }
+
+
+    .shop-floor {
+        min-height: 500px;
+    }
+
+
+    .shelf {
+        transform: scale(.8);
+        transform-origin: top left;
+    }
+
+
+    .shelf:nth-of-type(2) {
+        transform-origin: top right;
+    }
+
+
+    .empty-shelf {
+        transform: scale(.8);
+        transform-origin: top left;
+    }
+
+
+    .cashier {
+        transform: scale(.8);
+        transform-origin: bottom right;
+    }
+
+
+    .action-card {
+        grid-template-columns: 45px 1fr;
+    }
+
+
+    .action-buttons,
+    .main-action {
+        grid-column: 1 / 3;
+    }
+
+
+    .action-buttons {
+        flex-direction: row;
+    }
+
+
+    .action-buttons button {
+        flex: 1;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+
 }
